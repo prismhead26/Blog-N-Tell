@@ -1,16 +1,16 @@
 const router = require("express").Router();
-const { Doctor } = require("../../models");
+const { User } = require("../../models");
 
-// Create new Doctor
+// Create new User
 router.post("/", async (req, res) => {
   try {
-    const doctorData = await Doctor.create(req.body);
+    const userData = await User.create(req.body);
 
     req.session.save(() => {
-      req.session.user_id = doctorData.id;
+      req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.status(200).json(doctorData);
+      res.status(200).json(userData);
     });
   } catch (err) {
     res.status(400).json({
@@ -20,22 +20,22 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Login Doctor
+// Login User
 
 router.post("/login", async (req, res) => {
   try {
-    const doctorData = await Doctor.findOne({
+    const userData = await User.findOne({
       where: { username: req.body.username },
     });
 
-    if (!doctorData) {
+    if (!userData) {
       res
         .status(400)
         .json({ message: "Incorrect email or password, please try again" });
       return;
     }
 
-    const validPassword = doctorData.checkPassword(req.body.password);
+    const validPassword = userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
@@ -45,17 +45,17 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user_id = doctorData.id;
+      req.session.user_id = userData.id;
       req.session.logged_in = true;
 
-      res.json({ user: doctorData, message: "You are now logged in!" });
+      res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// Logout Doctor
+// Logout User
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

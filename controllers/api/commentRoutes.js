@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const { Appointment, Patient, Doctor } = require("../../models");
+const { Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// Create a appointment
+// Create a comment
 router.post("/", withAuth, async (req, res) => {
   try {
-    const appointmentData = await Appointment.create({
+    const commentData = await Comment.create({
         ...req.body,
-        doctor_id: req.session.user_id,
+        user_id: req.session.user_id,
     });
-    res.status(200).json(appointmentData);
+    res.status(200).json(commentData);
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -18,10 +18,10 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// Update a appointment
+// Update a comment
 router.put("/:id", withAuth, async (req, res) => {
   try {
-    const appointmentData = await Appointment.update(
+    const commentData = await Comment.update(
       {
         title: req.body.title,
         time: req.body.time,
@@ -30,11 +30,11 @@ router.put("/:id", withAuth, async (req, res) => {
       {
         where: {
           id: req.params.id,
-          doctor_id: req.session.user_id,
+          user_id: req.session.user_id,
         },
       }
     );
-    res.status(200).json(appointmentData);
+    res.status(200).json(commentData);
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -43,16 +43,16 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
-// Delete a appointment
+// Delete a comment
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    const appointmentData = await Appointment.destroy({
+    const commentData = await Comment.destroy({
       where: {
         id: req.params.id,
-        doctor_id: req.session.user_id
+        user_id: req.session.user_id
       },
     });
-    res.status(200).json(appointmentData);
+    res.status(200).json(commentData);
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -61,18 +61,18 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
-  try {
-    const appointmentData = await Appointment.findByPk(req.params.id);
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const commentData = await Comment.findByPk(req.params.id);
 
-    const appointment = appointmentData.get({ plain: true });
-    res.render("appointment", {
-      appointment,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     const comment = commentData.get({ plain: true });
+//     res.render("comment", {
+//       comment,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 
 module.exports = router;

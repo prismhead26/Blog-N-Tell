@@ -1,20 +1,31 @@
 // ROUTES FOR HTML TEMPLATES
 const router = require("express").Router();
-const { Patient, Doctor, Appointment } = require("../models");
+const { User, Blog, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 const jsonUtils = require("../utils/json_utils");
 
 // Route to get main HTML page
 router.get("/", async (req, res) => {
   try {
-    const doctorData = await Doctor.findAll({
-      attributes: ["name", "clinic"],
+    const blogData = await Blog.findAll({
+      include: [
+        {
+          model: Comment,
+          attributes: ["title", "description", "id", "user_id"],
+          include: [
+            {
+              model: User,
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
     });
 
-    const doctors = doctorData.map((doctor) => doctor.get({ plain: true }));
-    // console.log('doctor data ========', doctors)
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    // console.log('blog data ========', blogs)
     res.render("homepage", {
-      doctors,
+      blogs,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -31,38 +42,25 @@ router.get("/login", async (req, res) => {
 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const doctorData = await Doctor.findByPk(req.session.user_id, {
+    const userData = await User.findByPk(req.session.user_id, {
       include: [
-        // {
-        //   model: Appointment,
-        //   attributes: ["time", "title"],
-        // },
-        // {
-        //   model: Patient,
-        //   attributes: ["name"],
-        //   include: [
-        //     {
-        //       model: Appointment,
-        //     },
-        //   ],
-        // },
         {
-          model: Appointment,
-          attributes: ["time", "title", "id", "doctor_id"],
-          include: [
-            {
-              model: Patient,
-              attributes: ["name"],
-            },
-          ],
+          model: Blog,
+          attributes: ["title", "body", "id", "user_id"],
+          // include: [
+          //   {
+          //     model: Patient,
+          //     attributes: ["name"],
+          //   },
+          // ],
         },
       ],
     });
-    const doct = doctorData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
     res.render("dashboard", {
-      data: jsonUtils.encodeJSON(doct),
-      ...doct,
+      data: jsonUtils.encodeJSON(user),
+      ...user,
       logged_in: req.session.logged_in,
     });
   } catch (error) {
@@ -70,28 +68,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
       status: "error",
       message: "Oops, a server error!",
     });
-  }
-});
-
-router.get("/profile", withAuth, async (req, res) => {
-  try {
-    const doctorData = await Doctor.findByPk(req.session.user_id, {
-      include: [
-        {
-          model: Patient,
-          attributes: ["name", "address", "birthday", "id"],
-        },
-      ],
-    });
-
-    const doct = doctorData.get({ plain: true });
-
-    res.render("profile", {
-      ...doct,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json({ status: "error", message: "Oops, a server error!" });
   }
 });
 

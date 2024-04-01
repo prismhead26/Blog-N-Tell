@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const { Patient, Doctor } = require("../../models");
+const { Blog, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// Create a patient
+// Create a blog
 router.post("/", withAuth, async (req, res) => {
   try {
-    const patientData = await Patient.create({
+    const blogData = await Blog.create({
       ...req.body,
       doctor_id: req.session.user_id,
     });
-    res.status(200).json(patientData);
+    res.status(200).json(blogData);
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -18,10 +18,10 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-// Update a patient
+// Update a blog
 router.put("/:id", withAuth, async (req, res) => {
   try {
-    const patientData = await Patient.update(
+    const blogData = await Blog.update(
       {
         name: req.body.name,
         address: req.body.address,
@@ -35,7 +35,7 @@ router.put("/:id", withAuth, async (req, res) => {
         },
       }
     );
-    res.status(200).json(patientData);
+    res.status(200).json(blogData);
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -44,15 +44,15 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
-// Delete a patient
+// Delete a blog
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    const patientData = await Patient.destroy({
+    const blogData = await Blog.destroy({
       where: {
         id: req.params.id,
       },
     });
-    res.status(200).json(patientData);
+    res.status(200).json(blogData);
   } catch (error) {
     res.status(500).json({
       status: "error",
@@ -63,11 +63,11 @@ router.delete("/:id", withAuth, async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const patientData = await Patient.findByPk(req.params.id);
+    const blogData = await blog.findByPk(req.params.id);
 
-    const patient = patientData.get({ plain: true });
-    res.render("patient", {
-      patient,
+    const blog = blogData.get({ plain: true });
+    res.render("blog", {
+      blog,
     });
   } catch (err) {
     res.status(500).json(err);
