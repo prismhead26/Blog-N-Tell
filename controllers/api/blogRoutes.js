@@ -7,7 +7,7 @@ router.post("/", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.create({
       ...req.body,
-      doctor_id: req.session.user_id,
+      user_id: req.session.user_id,
     });
     res.status(200).json(blogData);
   } catch (error) {
@@ -23,15 +23,13 @@ router.put("/:id", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.update(
       {
-        name: req.body.name,
-        address: req.body.address,
-        phone: req.body.phone,
-        birthday: req.body.birthday,
+        title: req.body.title,
+        body: req.body.body,
       },
       {
         where: {
           id: req.params.id,
-          doctor_id: req.session.user_id,
+          user_id: req.session.user_id,
         },
       }
     );
@@ -63,7 +61,7 @@ router.delete("/:id", withAuth, async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const blogData = await blog.findByPk(req.params.id);
+    const blogData = await Blog.findByPk(req.params.id);
 
     const blog = blogData.get({ plain: true });
     res.render("blog", {
