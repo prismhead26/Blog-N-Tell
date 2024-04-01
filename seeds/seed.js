@@ -1,18 +1,16 @@
 require("dotenv").config();
 const sequelize = require("../config/connection");
 
-const seedDoctor = require("./doctorData");
-const seedPatient = require("./patientData");
-const seedAppointment = require("./appointmentData");
+const seedUser = require("./userData");
+const seedBlog = require("./blogData");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  await seedDoctor();
+  await seedUser();
 
-  await seedPatient();
+  await seedBlog();
 
-  await seedAppointment();
 
   process.exit(0);
 };
