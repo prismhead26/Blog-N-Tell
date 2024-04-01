@@ -2,13 +2,13 @@ const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
     console.log(id);
-    const response = await fetch(`/api/patients/${id}`, {
+    const response = await fetch(`/api/blogs/${id}`, {
       method: "DELETE",
     });
     if (response.ok) {
-      document.location.replace("/profile");
+      document.location.replace("/dashboard");
     } else {
-      alert("Failed to delete project");
+      alert("Failed to delete blog");
     }
   }
 };
@@ -16,27 +16,23 @@ const delButtonHandler = async (event) => {
 const upButtonHandler = async (event) => {
   event.preventDefault();
   console.log("button clicked");
-  const name = document.querySelector("#update-patient-name").value.trim();
-  const birthday = document
-    .querySelector("#update-patient-birthday")
+  const title = document.querySelector("#update-blog-title").value.trim();
+  const body = document
+    .querySelector("#update-blog-body")
     .value.trim();
-  const address = document
-    .querySelector("#update-patient-address")
-    .value.trim();
-  const phone = document.querySelector("#update-patient-phone").value.trim();
-  console.log(name, address, phone, birthday);
+  console.log(title, body);
 
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
     console.log("the id is: " + id);
-    const response = await fetch(`/api/patients/${id}`, {
+    const response = await fetch(`/api/blogs/${id}`, {
       method: "PUT",
-      body: JSON.stringify({ name, address, phone, birthday }),
+      body: JSON.stringify({ title, body }),
       headers: { "Content-Type": "application/json" },
     });
     console.log("the response is: " + response);
     if (response.ok) {
-      document.location.replace("/profile");
+      document.location.replace("/dashboard");
     } else {
       alert(response.statusText);
     }

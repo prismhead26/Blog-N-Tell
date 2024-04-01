@@ -29,6 +29,7 @@ router.get("/", async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log('error =======', err)
     res.status(500).json(err);
   }
 });
@@ -59,7 +60,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
 
     res.render("dashboard", {
-      data: jsonUtils.encodeJSON(user),
       ...user,
       logged_in: req.session.logged_in,
     });

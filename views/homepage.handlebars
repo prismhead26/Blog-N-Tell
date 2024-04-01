@@ -1,0 +1,22 @@
+
+  <header class="container d-flex flex-column align-items-center">
+    <h1 class="text-light">Welcome to Blog'n Tell!</h1>
+    <p class="text-light">A Creative, Clever, and Effective blog page!</p>
+      {{#unless logged_in}}
+        <p class="mt-3 text-warning"><strong>Tip:</strong> to continue, open the login page.</p>
+      {{/unless}}
+  </header>
+  <div class="container-sm align-items-center">
+    <img src="/images/health1.jpeg" class="img-fluid img-thumbnail mx-auto d-block" style="width: 288px;" alt="Blog Image">
+  </div>
+  <section class="container">
+    <h1 class="text-light">All Blogs</h1>
+    <div class="row justify-content-between d-flex">
+      {{#each blogs}}
+        <p class="text-light col-6">{{title}}</p><br />
+      {{/each}}
+    </div>
+  </section>
+  <script>const blogs = {{{ json blogs }}}
+          console.log("blogs obj... ",blogs)
+  </script>

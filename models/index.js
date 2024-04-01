@@ -12,6 +12,16 @@ User.hasMany(Blog, {
 Blog.belongsTo(User, {
   foreignKey: "user_id",
 });
+//User has many blogs
+Blog.hasMany(Comment, {
+  foreignKey: "blog_id",
+  onDelete: "CASCADE",
+});
+
+//b=Blog belong to one User
+Comment.belongsTo(Blog, {
+  foreignKey: "blog_id",
+});
 
 //User has many appointments
 User.hasMany(Comment, {
