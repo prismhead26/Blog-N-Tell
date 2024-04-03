@@ -5,5 +5,8 @@ module.exports = {
     },
     json: function(obj) {
         return JSON.stringify(obj);
-    }
+    },
+    newDate: function() {
+        return new Date().toLocaleDateString('en-US');
+    },
 }
