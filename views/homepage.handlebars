@@ -22,40 +22,40 @@ a:focus {
 
 
   <header class="container d-flex flex-column align-items-center">
-    <h1 class="text-light">Welcome to Blog'n Tell!</h1>
-    <p class="text-light">A Creative, Clever, and Effective blog page!</p>
+    <h1 class="fw-bolder fst-italic" style="color: pink">Welcome to Blog'n Tell!</h1>
+    <p class="fw-bold fst-italic" style="color: pink">A Creative, Clever, and Effective blog page!</p>
       {{#unless logged_in}}
         <p class="mt-3 text-warning"><strong>Tip:</strong> to continue, open the login page.</p>
       {{/unless}}
   </header>
 
   <div class="container">
-    <h1 class="text-light">All Blogs</h1>
-    <section class="row justify-content-between d-flex">
+    <h1 class="fw-bolder" style="color: pink">All Blogs: </h1>
+    <section class="row justify-content-around d-flex">
       
       {{#if blogs.length}}
         {{#if logged_in}}
           {{#each blogs}}
-          <article class="col-6">
-            <h3 class="text-light"><a href="./blog/{{id}}" data-bs-toggle="modal" data-bs-target="#myCommentModal{{id}}" data-id="{{id}}">{{title}}</a></h3>
-            <p class="text-light">{{body}}</p>
+          <article class="col-5 border border-5 border-success rounded m-3 shadow bg-secondary-subtle">
+            <h3 class="text-black text-center"><a href="./blog/{{id}}" data-bs-toggle="modal" data-bs-target="#myCommentModal{{id}}" data-id="{{id}}">{{title}}</a></h3>
+            <p class="text-light text-center">{{body}}</p>
               {{#each comments}}
-                <section class="container">
-                  <p class="text-light">{{description}}</p><br />
-                  <p class="text-light">   --{{user.name}} {{newDate}} </p>
+                <section class="container my-2 border-bottom border-3 border-success">
+                  <p class="text-secondary">{{description}}</p><br />
+                  <p class="text-secondary fst-italic">   --{{user.name}} {{newDate}} </p>
                 </section>
               {{/each}}
           </article>
           {{/each}}
         {{else}}
           {{#each blogs}}
-          <article class="col-6">
-            <h3 class="text-light">{{title}}</h3>
-            <p class="text-light">{{body}}</p>
+          <article class="col-5 border border-5 border-success rounded m-3 shadow bg-secondary bg-opacity-10">
+            <h3 class="text-black text-center">{{title}}</h3>
+            <p class="text-light text-center">{{body}}</p>
               {{#each comments}}
-                <section class="container">
-                  <p class="text-light">{{description}}</p><br />
-                  <p class="text-light">   --{{user.name}} {{newDate}} </p>
+                <section class="container my-2">
+                  <p class="text-secondary">{{description}}</p><br />
+                  <p class="text-secondary fst-italic">   --{{user.name}} {{newDate}} </p>
                 </section>
             {{/each}}
           </article>

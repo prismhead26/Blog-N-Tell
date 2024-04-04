@@ -1,23 +1,26 @@
-<div class="row">
-  <div class="col-md-6 text-white">
-    <h2>Login</h2>
+<style>
+  .container {
+    width: 400px;
+    height: 440px;
+  }
+</style>
+<div class="text-center text-white container border border-5 border-success rounded shadow">
+  <h2 class="py-5" style="color: pink">Login</h2>
 
-    <form class="form login-form text-white">
-      <div class="form-group">
-        <label for="username-login">username:</label>
-        <input class="form-input" type="text" id="username-login" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
-      </div>
-      <p>New User? <a href="/signup">Signup</a></p>
-    </form>
-  </div>
-  <div class="col-md-6">
-
+  <form class="form login-form text-white">
+    <div class="form-group">
+      <label for="username-login" style="color: pink">username:</label>
+      <input class="form-input form-control-sm bg-secondary" type="text" id="username-login" />
+    </div>
+    <div class="form-group py-3">
+      <label for="password-login" style="color: pink">password:</label>
+      <input class="form-input form-control-sm bg-secondary" type="password" id="password-login" />
+    </div>
+    <div class="form-group py-3">
+      <button class="btn btn-primary" type="submit">login</button>
+    </div>
+    <p style="color: pink">New User? <a href="/signup">Signup</a></p>
+  </form>
+</div>
 
 <script src="/js/login.js"></script>
