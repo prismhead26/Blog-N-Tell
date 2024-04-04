@@ -1,12 +1,11 @@
 const signupFormHandler = async (event) => {
     event.preventDefault();
-
-    const data = '{{blogs}}'
-    console.log('data', data)
-  
-    const description = document.querySelector("#new-comment-description").value.trim();
-    const blog_id = document.querySelector("#new-comment-blog_id").innerHTML.trim();
-    console.log('blog_id', blog_id)
+  if( event.target.matches('button') ) {
+    
+    // console.dir(event.target);
+    // console.dir(event.target.parentElement.previousElementSibling.children[0][0])
+    const description = event.target.parentElement.previousElementSibling.children[0][0].value.trim()
+    const blog_id = event.target.parentElement.previousElementSibling.children[0][0].dataset.id
 
     if (description && blog_id) {
         const response = await fetch(`api/comments`, {
@@ -21,9 +20,12 @@ const signupFormHandler = async (event) => {
           alert(response.statusText);
         }
       }
-
+    }
   };
 
-  document
-    .querySelector("#new-comment")
-    .addEventListener("click", signupFormHandler);
+  const modelEl = document
+    .querySelectorAll(".modal")
+  console.log(modelEl)
+modelEl.forEach(modal => {
+  modal.addEventListener("click", signupFormHandler);
+});

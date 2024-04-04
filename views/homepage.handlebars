@@ -1,3 +1,26 @@
+<style>
+  /* unvisited link */
+a:link {
+    color: blue;
+}
+
+/* visited link */
+a:visited {
+    color: green;!important;
+}
+
+/* mouse over link */
+a:hover {
+    color: Hotpink;
+}
+
+/* selected link */
+a:focus {
+    color: red;
+}
+</style>
+
+
   <header class="container d-flex flex-column align-items-center">
     <h1 class="text-light">Welcome to Blog'n Tell!</h1>
     <p class="text-light">A Creative, Clever, and Effective blog page!</p>
@@ -15,7 +38,6 @@
           {{#each blogs}}
           <article class="col-6">
             <h3 class="text-light"><a href="./blog/{{id}}" data-bs-toggle="modal" data-bs-target="#myCommentModal{{id}}" data-id="{{id}}">{{title}}</a></h3>
-            <p id="testVal">{{id}}</p>
             <p class="text-light">{{body}}</p>
               {{#each comments}}
                 <section class="container">
@@ -55,9 +77,7 @@
           <div class="modal-body">
             <form action="">
               <label for="comment-description">Comment description:</label>
-              <input type="text" id="new-comment-description"><br>
-              <label for="comment-blog_id">Blog ID: </label>
-              <p id="new-comment-blog_id">{{id}}</p><br />
+              <input type="text" id="new-comment-description" data-id="{{id}}"><br>
             </form>
           </div>
           <div class="modal-footer">
