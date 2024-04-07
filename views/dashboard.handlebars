@@ -10,7 +10,9 @@
     <div class="text-center mt-5 m-5">
       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add Blog</button>
     </div>
-    <h3 class="text-center patient-list mb-5 fw-bold" style="color: #ff9999">Current Blogs:</h3>
+      {{#if blogs.length}}
+        <h3 class="text-center patient-list mb-5 fw-bold" style="color: #ff9999">Current Blogs:</h3>
+      {{/if}}
   {{#each blogs}}
     {{> blog-details}}
   {{/each}}
@@ -27,13 +29,41 @@
       <div class="modal-body">
         <form action="">
           <label for="blog-title">Blog title:</label>
-          <input type="text" id="new-blog-title"><br>
-          <label for="blog-body">Body:</label>
-          <input type="text" id="new-blog-body"><br>
+          <input type="text" class="form-control" id="new-blog-title"><br>
+          <div class="form-group modal-body">
+            <label for="blog-body" class="col-form-label">Body:</label>
+            <textarea class="form-control" id="new-blog-body"></textarea>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
         <button class="btn btn-primary" id="new-blog">Submit Blog</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  aria-labelledby="errorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Unable to create blog.
+          Please wait, your page is reloading...</h5>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >Close</button>
+
+        </div>
       </div>
     </div>
   </div>

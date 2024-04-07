@@ -1,40 +1,44 @@
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
-    console.log(id);
     const response = await fetch(`/api/blogs/${id}`, {
       method: "DELETE",
     });
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.assign(`/dashboard}`);
     } else {
-      alert("Failed to delete blog");
+      let myModal = new bootstrap.Modal(
+        document.getElementById("errorModal"),
+        {}
+      );
+      myModal.show();
     }
   }
 };
 
 const upButtonHandler = async (event) => {
   event.preventDefault();
-  console.log("button clicked");
   const title = document.querySelector("#update-blog-title").value.trim();
   const body = document
     .querySelector("#update-blog-body")
     .value.trim();
-  console.log(title, body);
 
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
-    console.log("the id is: " + id);
     const response = await fetch(`/api/blogs/${id}`, {
       method: "PUT",
       body: JSON.stringify({ title, body }),
       headers: { "Content-Type": "application/json" },
     });
-    console.log("the response is: " + response);
+    
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.assign(`/api/blogs/${id}`);
     } else {
-      alert(response.statusText);
+      let myModal = new bootstrap.Modal(
+        document.getElementById("errorModal"),
+        {}
+      );
+      myModal.show();
     }
   }
 };

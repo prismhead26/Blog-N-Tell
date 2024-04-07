@@ -2,6 +2,6 @@
     background-color: lightblue !important;
 
 }
-#new-comment-description {
+#new-comment-description, #new-blog-title, #new-blog-body, #update-blog-title, #update-blog-body {
     background-color: wheat;
 }

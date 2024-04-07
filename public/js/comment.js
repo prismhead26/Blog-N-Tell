@@ -2,10 +2,10 @@ const signupFormHandler = async (event) => {
     event.preventDefault();
   if( event.target.matches('button') ) {
     
-    // console.dir(event.target);
-    // console.dir(event.target.parentElement.previousElementSibling.children[0][0])
-    const description = event.target.parentElement.previousElementSibling.children[0][0].value.trim()
-    const blog_id = event.target.parentElement.previousElementSibling.children[0][0].dataset.id
+    console.dir(event.target);
+
+    const description = event.target.parentElement.parentElement.children[1].children[1].value.trim()
+    const blog_id = event.target.parentElement.parentElement.children[1].children[1].dataset.id
 
     if (description && blog_id) {
         const response = await fetch(`api/comments`, {
@@ -17,7 +17,11 @@ const signupFormHandler = async (event) => {
         if (response.ok) {
           document.location.assign("/");
         } else {
-          alert(response.statusText);
+          let myModal = new bootstrap.Modal(
+            document.getElementById("errorModal"),
+            {}
+          );
+          myModal.show();
         }
       }
     }

@@ -5,9 +5,13 @@ const logout = async () => {
   });
 
   if (response.ok) {
-    document.location.replace("/");
+    document.location.assign("/");
   } else {
-    alert(response.statusText);
+    let myModal = new bootstrap.Modal(
+      document.getElementById("errorModal"),
+      {}
+    );
+    myModal.show();
   }
 };
 

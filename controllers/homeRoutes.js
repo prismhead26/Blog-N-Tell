@@ -2,7 +2,6 @@
 const router = require("express").Router();
 const { User, Blog, Comment } = require("../models");
 const withAuth = require("../utils/auth");
-const jsonUtils = require("../utils/json_utils");
 
 // Route to get main HTML page
 router.get("/", async (req, res) => {

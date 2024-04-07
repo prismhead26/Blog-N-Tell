@@ -14,7 +14,11 @@ const signupFormHandler = async (event) => {
       if (response.ok) {
         document.location.assign("/dashboard");
       } else {
-        alert(response.statusText);
+        let myModal = new bootstrap.Modal(
+          document.getElementById("errorModal"),
+          {}
+        );
+        myModal.show();
       }
     }
   };

@@ -30,13 +30,17 @@ a:focus {
   </header>
 
   <div class="container">
-    <h1 class="fw-bolder" style="color: #ff9999">All Blogs: </h1>
+    {{#if blogs.length}}
+      <h1 class="fw-bolder mt-5" style="color: #ff9999">All Blogs: </h1>
+    {{else}}
+      <h1 class="fw-bolder" style="color: #ff9999">In order to create a blog, head to over the dashboard once logged in.</h1>
+    {{/if}}
     <section class="row justify-content-around d-flex">
       
       {{#if blogs.length}}
         {{#if logged_in}}
           {{#each blogs}}
-          <article class="col-5 border border-5 border-success rounded m-3 shadow bg-secondary-subtle">
+          <article class="col-5 border border-5 border-success rounded m-3 p-3 shadow bg-secondary-subtle">
             <h3 class="h2 text-black text-center fw-bolder"><a href="./blog/{{id}}" data-bs-toggle="modal" data-bs-target="#myCommentModal{{id}}" data-id="{{id}}">{{title}}</a></h3>
             <p class="h4 text-light text-center py-2">{{body}}</p>
               {{#each comments}}
@@ -69,13 +73,13 @@ a:focus {
     }
 </style>
           {{#each blogs}}
-          <article class="col-5 border border-5 border-success rounded m-3 shadow bg-secondary bg-opacity-10">
-            <h3 class="text-black text-center">{{title}}</h3>
-            <p class="text-light text-center">{{body}}</p>
+          <article class="col-5 border border-5 border-success rounded m-3 p-3 shadow bg-secondary bg-opacity-10">
+            <h1 class="text-black text-center">{{title}}</h1>
+            <p class="h4 text-light text-cente py-2">{{body}}</p>
               {{#each comments}}
-                <section class="container my-2">
-                  <p class="text-secondary">{{description}}</p><br />
-                  <p class="text-secondary fst-italic">   --{{user.name}} {{newDate}} </p>
+                <section class="container my-2 border-bottom border-3 border-success">
+                  <p class="text-warning">{{description}}</p><br />
+                  <p class="text-warning fst-italic">   --{{user.name}} {{newDate}} </p>
                 </section>
             {{/each}}
           </article>
@@ -89,14 +93,14 @@ a:focus {
   {{#each blogs}}
     <div class="modal fade" id="myCommentModal{{id}}">
       <div class="modal-dialog">
-        <div class="test modal-content">
+        <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title fs-5" id="myModalLabel">New Commment Information</h5>
             <button class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="form-group modal-body">
             <label for="comment-description" class="col-form-label">Comment description:</label>
-            <textarea class="form-control" id="new-comment-description"></textarea>
+            <textarea class="form-control" id="new-comment-description" data-id="{{id}}"></textarea>
           </div>
           <div class="modal-footer">
             <button class="btn btn-primary" id="new-comment">Submit Comment</button>
@@ -106,6 +110,32 @@ a:focus {
     </div>
   {{/each}}
 {{/if}}
+
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  aria-labelledby="errorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Unable to create comment.
+          Please wait, your page is reloading...</h5>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <script>const blogs = {{{ json blogs }}}
           console.log("blogs obj... ",blogs)

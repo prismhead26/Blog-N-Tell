@@ -6,16 +6,24 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector("#password-signup").value.trim();
 
   if (name && username && password) {
-    const response = await fetch("/api/doctors", {
+    const response = await fetch("/api/users", {
       method: "POST",
       body: JSON.stringify({ name, username, password }),
       headers: { "Content-Type": "application/json" },
     });
 
+
     if (response.ok) {
-      document.location.replace("/profile");
+      document.location.replace("/dashboard");
     } else {
-      alert(response.statusText);
+      let myModal = new bootstrap.Modal(
+        document.getElementById("errorModal"),
+        {}
+      );
+      myModal.show();
+      setTimeout(function(){
+        location.reload()
+      }, 5000)
     }
   }
 };

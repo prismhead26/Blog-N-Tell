@@ -21,12 +21,12 @@
       data-bs-toggle="modal"
       data-bs-target="#myModal"
     >Update Blog</button>
-    <a href="/dashboard"><button class="btn btn-primary">Return to Dashboard</button></a>
+    <a href="/dashboard" class="px-2"><button class="btn btn-primary">Return to Dashboard</button></a>
     <button
       class="btn btn-primary"
       id="delete-button"
       data-id="{{blog.id}}"
-    >Delete BLog</button>
+    >Delete Blog</button>
   </p>
 </div>
 
@@ -41,18 +41,15 @@
       <div class="modal-body">
         <form action="">
           <label for="blog-title">title: </label>
-          <input
+          <input class="form-control"
             type="text"
             id="update-blog-title"
             value="{{blog.title}}"
           /><br />
-          <label for="blog-body">Description:
-          </label>
-          <input
-            type="text"
-            id="update-blog-body"
-            value="{{blog.body}}"
-          /><br />
+          <div class="form-group modal-body">
+            <label for="blog-body" class="col-form-label">Body:</label>
+            <textarea class="form-control" id="update-blog-body">{{blog.body}}</textarea>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -61,6 +58,32 @@
           id="update-button"
           data-id="{{blog.id}}"
         >Submit Blog</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="errorModal"
+  tabindex="-1"
+  aria-labelledby="errorModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="errorModalLabel">Unable to process the request.
+          Please wait, your page is reloading...</h5>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >Close</button>
+
+        </div>
       </div>
     </div>
   </div>
