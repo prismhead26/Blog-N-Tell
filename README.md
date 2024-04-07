@@ -41,14 +41,14 @@ Step 7: After the "Blog'N Tell Listening on port..." appears in the console, ope
 
 ## Links
 Screenshots:
-![Homepage](./assets/images/StartScreen.png)
+![Homepage](./public/images/homepage.png)
 
-![Dashboard](./assets/images/StartScrnCont.png)
+![Dashboard](./public/images/dashboard.png)
 
-![Blog](./assets/images/Tables.png)
+![Blog](./public/images/blog.png)
 
 Heroku link:
-[Heroku Link](https://www.youtube.com/watch?v=5Kr457JyfMw)
+[Heroku Link](https://blog-n-tell-527cfad2473f.herokuapp.com/)
 
 ## Features:
 Javascript variables, destructuring, classes and constructors, promises, try/catch methods, async/await methods, event delegation, etc.

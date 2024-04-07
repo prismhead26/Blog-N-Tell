@@ -5,7 +5,7 @@ const delButtonHandler = async (event) => {
       method: "DELETE",
     });
     if (response.ok) {
-      document.location.assign(`/dashboard}`);
+      document.location.assign("/dashboard");
     } else {
       let myModal = new bootstrap.Modal(
         document.getElementById("errorModal"),
