@@ -1,7 +1,9 @@
+/* background color of modals */
 .modal-content {
     background-color: lightblue !important;
 
 }
+/* background color of modal inputs */
 #new-comment-description, #new-blog-title, #new-blog-body, #update-blog-title, #update-blog-body {
     background-color: wheat;
 }

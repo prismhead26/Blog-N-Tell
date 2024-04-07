@@ -1,3 +1,4 @@
+// require associated model
 const { Comment } = require("../models");
 
 const commentData = [

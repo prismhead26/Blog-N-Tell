@@ -1,4 +1,5 @@
-const signupFormHandler = async (event) => {
+// add blog func
+const createBlog = async (event) => {
     event.preventDefault();
   
     const title = document.querySelector("#new-blog-title").value.trim();
@@ -25,4 +26,4 @@ const signupFormHandler = async (event) => {
 
   document
     .querySelector("#new-blog")
-    .addEventListener("click", signupFormHandler);
+    .addEventListener("click", createBlog);

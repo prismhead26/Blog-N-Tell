@@ -8,6 +8,7 @@ class User extends Model {
   }
 }
 
+//Create user model
 User.init(
   {
     id: {

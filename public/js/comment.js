@@ -1,4 +1,5 @@
-const signupFormHandler = async (event) => {
+// add comment func
+const createComment = async (event) => {
     event.preventDefault();
   if( event.target.matches('button') ) {
     
@@ -17,6 +18,7 @@ const signupFormHandler = async (event) => {
         if (response.ok) {
           document.location.assign("/");
         } else {
+          // alert modal
           let myModal = new bootstrap.Modal(
             document.getElementById("errorModal"),
             {}
@@ -31,5 +33,5 @@ const signupFormHandler = async (event) => {
     .querySelectorAll(".modal")
   console.log(modelEl)
 modelEl.forEach(modal => {
-  modal.addEventListener("click", signupFormHandler);
+  modal.addEventListener("click", createComment);
 });

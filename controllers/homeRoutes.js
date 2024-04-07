@@ -47,12 +47,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
         {
           model: Blog,
           attributes: ["title", "body", "id", "user_id"],
-          // include: [
-          //   {
-          //     model: Patient,
-          //     attributes: ["name"],
-          //   },
-          // ],
         },
       ],
     });

@@ -1,3 +1,4 @@
+// require associated model
 const { User } = require("../models");
 
 const userData = [

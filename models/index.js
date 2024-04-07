@@ -8,7 +8,7 @@ User.hasMany(Blog, {
   onDelete: "CASCADE",
 });
 
-//b=Blog belong to one User
+//Blog belong to one User
 Blog.belongsTo(User, {
   foreignKey: "user_id",
 });
@@ -18,17 +18,17 @@ Blog.hasMany(Comment, {
   onDelete: "CASCADE",
 });
 
-//b=Blog belong to one User
+//Blog belong to one User
 Comment.belongsTo(Blog, {
   foreignKey: "blog_id",
 });
 
-//User has many appointments
+//User has many comments
 User.hasMany(Comment, {
   foreignKey: "user_id",
 });
 
-//Appointment belongs to one User
+//Comment belongs to one User
 Comment.belongsTo(User, {
   foreignKey: "user_id",
 });

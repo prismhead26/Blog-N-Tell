@@ -61,6 +61,10 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
+
+// Future Development... Create access to user comment to update, delete
+
+
 // router.get("/:id", async (req, res) => {
 //   try {
 //     const commentData = await Comment.findByPk(req.params.id);

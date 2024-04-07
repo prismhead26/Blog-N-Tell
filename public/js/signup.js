@@ -1,3 +1,4 @@
+// sign up handler func
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
@@ -16,6 +17,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace("/dashboard");
     } else {
+      // alert modal
       let myModal = new bootstrap.Modal(
         document.getElementById("errorModal"),
         {}

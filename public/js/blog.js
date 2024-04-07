@@ -1,3 +1,4 @@
+// delete blog func
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
@@ -15,7 +16,7 @@ const delButtonHandler = async (event) => {
     }
   }
 };
-
+// update blog func
 const upButtonHandler = async (event) => {
   event.preventDefault();
   const title = document.querySelector("#update-blog-title").value.trim();
@@ -34,6 +35,7 @@ const upButtonHandler = async (event) => {
     if (response.ok) {
       document.location.assign(`/api/blogs/${id}`);
     } else {
+      // alert modal
       let myModal = new bootstrap.Modal(
         document.getElementById("errorModal"),
         {}
@@ -42,7 +44,7 @@ const upButtonHandler = async (event) => {
     }
   }
 };
-
+// Event listeners
 document
   .querySelector("#delete-button")
   .addEventListener("click", delButtonHandler);
