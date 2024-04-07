@@ -58,8 +58,6 @@ Javascript variables, destructuring, classes and constructors, promises, try/cat
 - MVC (Model View Controller)
 - Bootstrap & Icons
 - Handlebars: as the main templating language.
-- fullCalendar.js
-- Day.js
 - Express
 - express-session: for user authentication.
 - Sequelize: as the ORM (Object Relational Mapper).
