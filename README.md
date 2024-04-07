@@ -1,4 +1,4 @@
-# Employee Tracker Database
+# Blog'N Tell Application
 
 ## Description:
 
